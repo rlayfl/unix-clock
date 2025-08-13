@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Unix Time Clock</title>
+  <style>
+    #output{
+      display:inline-block;font-family:monospace;font-size:30px;text-align:right;
+      color:lightgray;border-radius:10px;padding:10px;background:rgba(0,0,0,.75);
+    }
+  </style>
+</head>
+<body translate="no">
+  <div id="output"></div>
+
+  <script>
+
+    const output = document.getElementById("output");
+    let lastSec = -1;
+
+    function tick() {
+      // use system clock in ms, then floor to seconds
+      const sec = Math.floor(Date.now() / 1000);
+      if (sec !== lastSec) {
+        output.textContent = sec;
+        lastSec = sec;
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+  </script>
+</body>
+</html>
